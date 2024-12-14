@@ -14,7 +14,7 @@
 // }
 
 // The fields of a struct can be accessed using the dot (.) operator.
-// myCar := car{}  ->instantiate a struct here, this is an empty struct.
+// myCar := car{}  ->instantiate a struct here, this is an empty struct,like object of a class
 // myCar.frontWheel.radius = 5
 
 // package main

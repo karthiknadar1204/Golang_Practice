@@ -32,3 +32,12 @@ func main() {
 	// don't edit below this line
 	fmt.Println("number of seconds in an hour:", secondsInHour)
 }
+
+
+
+
+//declare multiple constants together
+const (
+	pi = 3.14159
+	gravity = 9.81
+)
