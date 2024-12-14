@@ -34,7 +34,6 @@ eg:
 
 # Loops
 Golang has only one loop construct, the for loop.
-if statements in Go do not use parentheses around the condition:
 
 ``` go
 package main
@@ -95,3 +94,135 @@ func main() {
 	}
 }
 ```
+
+
+
+
+
+
+
+
+
+# Conditionals
+if statements in Go do not use parentheses around the condition:
+
+``` go
+package main
+
+import "fmt"	
+
+func main() {
+	if height > 4 {
+		fmt.Println("You are tall enough!")
+	}
+}
+```
+
+``` go
+package main
+
+import "fmt"
+
+func main() {
+	if height > 6 {
+		fmt.Println("You are super tall!")
+	} else if height > 4 {
+		fmt.Println("You are tall enough!")
+	} else {
+		fmt.Println("You are not tall enough!")
+	}
+}
+```
+
+
+## Multiple Conditions
+In Go, you can combine multiple conditions using logical operators:
+- `&&` (AND)
+- `||` (OR)
+- `!` (NOT)
+
+Here's an example:
+
+
+``` go
+package main
+
+import "fmt"
+
+func main() {
+	age := 25
+	height := 5.8
+
+	// Using AND (&&)
+	if age > 18 && height > 5.0 {
+		fmt.Println("You are an adult and tall enough!")
+	}
+
+	// Using OR (||)
+	if age < 18 || height < 5.0 {
+		fmt.Println("You are either young or short!")
+	}
+
+	// Combining multiple conditions
+	if (age > 18 && height > 5.0) || age > 60 {
+		fmt.Println("You can enter the ride!")
+	}
+}
+```
+
+
+
+
+## Variable Declaration in Conditionals
+
+In Go, you can declare and initialize variables directly in the if statement.
+This is called an "initialization statement" and is a common pattern. The variable declared 
+in the initialization statement is only available within the scope of the if statement.
+
+Here's an example:
+
+``` go
+package main
+
+import "fmt"
+
+func main() {
+	if age := 25; age > 18 {
+		fmt.Println("You are an adult!")
+	}
+}
+```
+
+
+Key points:
+- Variables declared in the initialization statement are only available within the if block
+- You can declare multiple variables using this syntax
+- The initialization is separated from the condition by a semicolon
+- This pattern helps keep variables scoped to where they're needed
+
+This is particularly useful when working with functions that return multiple values:
+
+
+
+``` go
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	if file, err := os.Open("file.txt"); err == nil {
+		// do something with the file
+		defer file.Close()
+	} else {
+		fmt.Println("Error opening file:", err)
+	}
+	// file and err are not accessible here
+}
+```
+
+### Go does not support the ternary operator.
+
+
