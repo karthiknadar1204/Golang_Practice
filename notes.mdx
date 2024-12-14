@@ -226,3 +226,160 @@ func main() {
 ### Go does not support the ternary operator.
 
 
+
+
+
+
+
+
+
+
+# Switch Statements
+
+Switch statements in Go are versatile and can be used in several ways.
+They're cleaner than long if-else chains.
+unlike other languages, Go switch statements do not fall through by default i.e we do not need to use break statement.
+
+## Basic Switch
+
+``` go
+package main
+
+import "fmt"
+
+func main() {
+	score := 85
+	switch {
+	case score >= 90:
+		fmt.Println("Grade: A")
+	case score >= 80:
+		fmt.Println("Grade: B")
+	case score >= 70:
+		fmt.Println("Grade: C")
+	default:
+		fmt.Println("Grade: F")
+	}
+}
+```
+
+
+
+## Switch without Expression
+
+
+``` go
+package main
+
+import "fmt"
+
+func main() {
+	score := 85
+	switch {
+	case score >= 90:
+		fmt.Println("Grade: A")
+	case score >= 80:
+		fmt.Println("Grade: B")
+	case score >= 70:
+		fmt.Println("Grade: C")
+	default:
+		fmt.Println("Grade: F")
+	}
+}
+```
+
+
+
+## Switch with Initialization Statement
+
+``` go
+package main
+
+import "time"
+import "fmt"
+
+func main() {
+	switch today := time.Now().Weekday(); today {
+	case time.Saturday:
+		fmt.Println("It's Saturday!")
+	case time.Sunday:
+		fmt.Println("It's Sunday!")
+	default:
+		fmt.Printf("Looking forward to the weekend! Today is %v\n", today)
+	}
+}
+```
+
+
+
+## Fallthrough
+
+By default, Go switch statements break automatically after a case matches. 
+Use `fallthrough` to execute the next case regardless of its condition:
+
+
+``` go
+package main
+
+import "fmt"
+
+func main() {
+	num := 75
+	switch {
+	case num > 50:
+		fmt.Println("Number is greater than 50")
+		fallthrough
+	case num > 60:
+		fmt.Println("Number is greater than 60")
+		fallthrough
+	case num > 70:
+		fmt.Println("Number is greater than 70")
+	case num > 80:
+		fmt.Println("Number is greater than 80")
+	}
+}
+```
+
+
+
+## Type Switch
+
+Go also supports type switches to check the type of an interface:
+
+``` go
+package main
+
+import "fmt"
+
+func checkType(i interface{}) {
+	switch v := i.(type) {
+	case int:
+		fmt.Printf("Integer: %v\n", v)
+	case string:
+		fmt.Printf("String: %v\n", v)
+	case bool:
+		fmt.Printf("Boolean: %v\n", v)
+	default:
+		fmt.Printf("Unknown type\n")
+	}
+}
+
+func main() {
+	checkType(42) // Integer: 42
+	checkType("Hello") // String: Hello
+	checkType(true) // Boolean: true
+	checkType(3.14) // Unknown type
+}
+```
+
+
+
+Key points about Go switch statements:
+- Cases don't need a break statement (automatic break)
+- Cases can be expressions
+- Multiple values can be tested in a single case
+- Type switches help work with interfaces
+- `fallthrough` forces execution to continue to the next case
+- The default case handles all unmatched values
+
+
+
