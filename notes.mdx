@@ -556,3 +556,145 @@ func main() {
 	original = nil
 }
 ```
+### for more examples,read the 7_slices codes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Maps in Go
+
+Maps are hash tables in Go that store key-value pairs. They provide fast lookups and are highly efficient for storing and retrieving data.
+
+## Creating Maps
+
+There are several ways to create maps in Go:
+
+### 1. Using make()
+```go
+package main
+import "fmt"
+func main() {
+	// make(map[KeyType]ValueType)
+	scores := make(map[string]int)
+
+	// Adding key-value pairs
+	scores["Alice"] = 98
+	scores["Bob"] = 85
+	fmt.Println(scores) // Output: map[Alice:98 Bob:85]
+}
+```
+If key does not exist in the map,then it returns 0 value
+
+
+### 2. Map Literal
+```go
+package main
+import "fmt"
+func main() {
+	// Direct initialization
+	scores := map[string]int{
+	"Alice": 98,
+	"Bob": 85,
+	"Carol": 92,
+	}
+	fmt.Println(scores) // Output: map[Alice:98 Bob:85 Carol:92]
+}
+```
+
+
+
+
+
+
+
+
+## Basic Operations
+
+### 1. Adding and Updating Elements
+```go
+package main
+import "fmt"
+func main() {
+	users := make(map[string]int)
+	// Adding elements
+	users["Tom"] = 25
+	users["Alice"] = 22
+	fmt.Println(users) // Output: map[Tom:25 Alice:22]
+	// Updating elements
+	users["Tom"] = 26
+	fmt.Println(users) // Output: map[Tom:26 Alice:22]
+}
+```
+
+
+
+### 2. Accessing Elements
+```go
+package main
+import "fmt"
+func main() {
+	scores := map[string]int{
+	"Alice": 98,
+	"Bob": 85,
+	}
+	// Simple access
+	aliceScore := scores["Alice"]
+	fmt.Println("Alice's score:", aliceScore) // Output: Alice's score: 98
+	// Checking if key exists
+	score, exists := scores["Carol"]
+	if exists {
+		fmt.Println("Carol's score:", score)
+	} else {
+		fmt.Println("Carol's score not found") // Output: Carol's score not found
+	}
+}
+```
+
+
+
+
+### 3. Deleting Elements
+```go
+package main
+import "fmt"
+func main() {
+	colors := map[string]string{
+	"red": "#ff0000",
+	"green": "#00ff00",
+	"blue": "#0000ff",
+	}
+	fmt.Println("Before deletion:", colors)
+	// Output: Before deletion: map[red:#ff0000 green:#00ff00 blue:#0000ff]
+	delete(colors, "green")
+	fmt.Println("After deletion:", colors)
+	// Output: After deletion: map[red:#ff0000 blue:#0000ff]
+}
+```
+
+
+### map.Equal method in Go
+```go
+package main
+import (
+"fmt"
+"maps"
+)
+func main() {
+	map1 := map[string]int{"a": 1, "b": 2}
+	map2 := map[string]int{"a": 1, "b": 2}
+	map3 := map[string]int{"a": 1, "b": 3}
+	// Compare maps
+	fmt.Println(maps.Equal(map1, map2)) // Output: true
+	fmt.Println(maps.Equal(map1, map3)) // Output: false
+}
+```
